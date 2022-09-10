@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp
+﻿using System;
+
+namespace ConsoleApp
 {
     internal class Number
     {
@@ -18,10 +20,9 @@
         public string GetNumberRepresentation(int number)
         {
             if (!(number >= MinValue && number <= MaxValue))
-                return "Number is not in acceptable range 1 to 100";
+                return "Number is not in acceptable range " + MinValue + " to " + MaxValue;
 
             string result = string.Empty;
-
             if (number % 3 == 0)
             {
                 result += DivisibleByThree;
@@ -39,7 +40,14 @@
 
             if (result == string.Empty)
             {
-                result = NumberToText(number);
+                try
+                {
+                    result = NumberToText(number);
+                }
+                catch(Exception e)
+                {
+                    result = e.Message;
+                }
             }
 
             return result;
@@ -61,6 +69,9 @@
 
         private string NumberToText(int number)
         {
+            if (!(number >= MinValue && number <= MaxValue))
+                throw new Exception("Number is not in acceptable range " + MinValue + " to " + MaxValue);
+
             string text = string.Empty;
 
             if (number > 0 && number <= 19)

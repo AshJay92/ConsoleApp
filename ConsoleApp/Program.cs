@@ -8,7 +8,7 @@ namespace ConsoleApp
         {
             Number number = new Number();
 
-            for(int i = 1; i <= 30; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 Console.WriteLine(number.GetNumberRepresentation(i));
             }         
